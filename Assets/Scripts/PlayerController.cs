@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private bool hasWrench = false;
-
+    private RaycastHit2D hit;
 
 	void Awake()
     {
@@ -19,7 +19,9 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetMouseButtonUp(0))
             {
-                
+                hit = Physics2D.Raycast(new Vector2(Camera.main.ScreenToWorldPoint(Input.mousePosition).x, 
+                    Camera.main.ScreenToWorldPoint(Input.mousePosition).y), Vector2.zero,0f);
+                if (hit.transform.tag == "Interactable") { hit.transform.GetComponent<IInteractable>().Interact(); }
             }
         }
 	}

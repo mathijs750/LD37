@@ -2,15 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DrillManager : MonoBehaviour {
+public enum InteractionType {
+    pickUp,
+    pickUpReciever,
+    overlayActivator
+}
 
-	// Use this for initialization
-	void Start () {
-		
+
+public class DrillManager : MonoBehaviour
+{
+    private Dictionary<int, InteractionType> interactables;
+	void Awake () {
+        interactables = new Dictionary<int, InteractionType> { { 0, InteractionType.overlayActivator } };
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    public void Interact(int childIndex)
+    {
+    }
 }
