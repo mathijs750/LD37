@@ -6,6 +6,8 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
+    private Transform focalPoint;
+    [SerializeField]
     private Rect cameraBounds;
 
     private float cameraZoomLevel = 1;
@@ -29,14 +31,14 @@ public class CameraController : MonoBehaviour
             if (Input.GetAxis("Mouse ScrollWheel") != 0)
             {
                 cameraZoomLevel = Mathf.Clamp(cameraZoomLevel -= Input.GetAxis("Mouse ScrollWheel")*2, .5f, maxZoomLevel);
-                camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, CalculateCameraSize(cameraZoomLevel), Time.deltaTime*3);
+                camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, CalculateCameraSize(cameraZoomLevel), Time.deltaTime*2);
                 cameraLimits = CalculateCameraLimits();
             }
 
-            cameraWobble = new Vector3(Mathf.Clamp(transform.position.x + Input.GetAxis("Mouse X"),- cameraLimits.x, cameraLimits.x),
-                Mathf.Clamp(transform.position.y + Input.GetAxis("Mouse Y"), - cameraLimits.y, cameraLimits.y), -10);
+            cameraWobble = new Vector3(Mathf.Clamp(focalPoint.position.x  + Input.GetAxis("Mouse X"),- cameraLimits.x, cameraLimits.x),
+                Mathf.Clamp(focalPoint.position.y + Input.GetAxis("Mouse Y"), - cameraLimits.y, cameraLimits.y), -10);
 
-            transform.position = Vector3.Lerp(transform.position, cameraWobble, Time.deltaTime * 2);
+            transform.position = Vector3.Lerp(transform.position, cameraWobble, Time.deltaTime);
         }
     }
 
