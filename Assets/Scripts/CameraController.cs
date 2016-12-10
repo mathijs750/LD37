@@ -17,6 +17,8 @@ public class CameraController : MonoBehaviour
     private Transform focalPoint;
     [SerializeField]
     private Vector2 cameraBounds;
+    [SerializeField]
+    private float periscopeSpeed = .0004f;
 
     private float cameraZoomLevel = 1;
     private float maxZoomLevel;
@@ -41,17 +43,6 @@ public class CameraController : MonoBehaviour
     {
         if (GameManager.instance.globalState == GlobalState.Gameplay)
         {
-            if (mode == MovementMode.Periscope)
-            {
-                cameraOffset = new Vector2(cameraOffset.x + (Input.GetAxis("Mouse X") * MouseFactor), cameraOffset.y + (Input.GetAxis("Mouse Y") * MouseFactor));
-                newPos = new Vector3(Mathf.Clamp(cameraOffset.x, -cameraLimits.x, cameraLimits.x),
-                    Mathf.Clamp(cameraOffset.y, -cameraLimits.y, cameraLimits.y), -10);
-            }
-            else
-            {
-                cameraOffset = new Vector2(cameraOffset.x + (Input.GetAxis("Mouse X") * MouseFactor), cameraOffset.y + (Input.GetAxis("Mouse Y") * MouseFactor));
-            }
-
             if (Input.GetAxis("Mouse ScrollWheel") != 0)
             {
                 cameraZoomLevel = Mathf.Clamp(cameraZoomLevel -= Input.GetAxis("Mouse ScrollWheel") * 2, 1, maxZoomLevel);
@@ -59,9 +50,26 @@ public class CameraController : MonoBehaviour
                 cameraLimits = CalculateCameraLimits();
             }
 
-
-            newPos = new Vector3(Mathf.Clamp(focalPoint.position.x + cameraOffset.x, -cameraLimits.x, cameraLimits.x),
+            // No x boundss
+            if (mode == MovementMode.Periscope)
+            {
+                if ((Input.mousePosition.x < Screen.width * 0.15f))
+                {
+                    cameraOffset.x -= (Screen.width * 0.15f - Input.mousePosition.x) * periscopeSpeed;
+                }
+                else if (Input.mousePosition.x > Screen.width * 0.85f)
+                {
+                    cameraOffset.x += (Input.mousePosition.x - Screen.width * 0.85f) * periscopeSpeed;
+                }
+                cameraOffset = new Vector2(cameraOffset.x, cameraOffset.y + (Input.GetAxis("Mouse Y") * MouseFactor));
+                newPos = new Vector3(cameraOffset.x, Mathf.Clamp(cameraOffset.y, -cameraLimits.y, cameraLimits.y), -10);
+            }
+            else
+            {
+                cameraOffset = new Vector2(cameraOffset.x + (Input.GetAxis("Mouse X") * MouseFactor), cameraOffset.y + (Input.GetAxis("Mouse Y") * MouseFactor));
+                newPos = new Vector3(Mathf.Clamp(focalPoint.position.x + cameraOffset.x, -cameraLimits.x, cameraLimits.x),
                 Mathf.Clamp(focalPoint.position.y + cameraOffset.y, -cameraLimits.y, cameraLimits.y), -10);
+            }
 
             transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime);
         }
