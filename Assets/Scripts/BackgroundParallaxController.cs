@@ -5,13 +5,15 @@ using UnityEngine;
 public class BackgroundParallaxController : MonoBehaviour
 {
     [SerializeField]
+    private Vector3 pivot, offset;
+    [SerializeField]
     private bool useXoffset = true;
     [SerializeField]
     private float parallaxScaleX = 2, parallaxScaleY = 1;
     [SerializeField]
     private Vector2 movementLimit;
     private Transform[] layers;
-    private Vector3 deltaPos, pivot;
+    private Vector3 deltaPos;
 
 
 	void Start ()
@@ -29,17 +31,17 @@ public class BackgroundParallaxController : MonoBehaviour
     {
         if (useXoffset)
         {
-            deltaPos.x = Mathf.Clamp(Camera.main.transform.position.x - layers[0].position.x, -movementLimit.x, movementLimit.x);
+            deltaPos.x = Mathf.Clamp(Camera.main.transform.position.x - pivot.x, -movementLimit.x, movementLimit.x);
         }
         else
         {
             deltaPos.x = 0;
         }
-        deltaPos.y = Mathf.Clamp(Camera.main.transform.position.y - layers[0].position.y, -movementLimit.y, movementLimit.y);
+        deltaPos.y = Mathf.Clamp(Camera.main.transform.position.y - pivot.y, -movementLimit.y, movementLimit.y);
         for (int i = 1; i < layers.Length; i++)
         {
-            layers[i].position = new Vector3(-deltaPos.x * i * parallaxScaleX,
-                -deltaPos.y * i * parallaxScaleY,  layers[i].position.z);
+            layers[i].position = new Vector3(-deltaPos.x * i * parallaxScaleX + offset.x,
+                -deltaPos.y * i * parallaxScaleY + offset.y,  layers[i].position.z);
         }
 	}
 
