@@ -13,6 +13,13 @@ public enum GlobalState
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField]
+    private CameraController cameraController;
+    [SerializeField]
+    private UIController uiController;
+    [SerializeField]
+    private PlayerController playerController;
+
     public static GameManager instance = null;
     public delegate void OnGlobalStateChange(GlobalState currentState, GlobalState oldState);
     public static event OnGlobalStateChange OnStateChanged;
@@ -37,5 +44,24 @@ public class GameManager : MonoBehaviour
         // TEMP
         _globalState = GlobalState.Gameplay;
         // _globalState = GlobalState.MainMenu;
+    }
+
+    public void openOverlay(OverlayType type)
+    {
+        uiController.ShowOverlay(type);
+        if (type == OverlayType.Periscope)
+        {
+            cameraController.ChangeMode(MovementMode.Periscope);
+        }
+        else
+        {
+            cameraController.ChangeMode(MovementMode.Overlay);
+        }
+    }
+
+    public void closeOverlay()
+    {
+        cameraController.ChangeMode(MovementMode.Drill);
+        uiController.CloseActiveOverlay();
     }
 }

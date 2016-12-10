@@ -5,7 +5,8 @@ using UnityEngine;
 public enum MovementMode
 {
     Drill,
-    Periscope
+    Periscope,
+    Overlay
 }
 
 [RequireComponent(typeof(Camera))]
@@ -25,14 +26,13 @@ public class CameraController : MonoBehaviour
     private Vector2 cameraLimits, cameraOffset;
     private Vector3 newPos;
     private new Camera camera;
-    private MovementMode mode = MovementMode.Periscope;
+    private MovementMode mode = MovementMode.Drill;
 
     void Awake()
     {
         camera = GetComponent<Camera>();
         maxZoomLevel = CalculateMaxZoomLevel();
         cameraLimits = CalculateCameraLimits();
-        Debug.Log(cameraLimits);
         transform.position = new Vector3(Mathf.Clamp(focalPoint.position.x, -cameraLimits.x, cameraLimits.x),
                 Mathf.Clamp(focalPoint.position.y, -cameraLimits.y, cameraLimits.y), -10);
         newPos = transform.position;
@@ -72,6 +72,20 @@ public class CameraController : MonoBehaviour
             }
 
             transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime);
+        }
+    }
+
+    public void ChangeMode(MovementMode newMode)
+    {
+        MovementMode old = mode;
+        mode = newMode;
+
+        if (old == MovementMode.Periscope)
+        {
+            cameraZoomLevel = 1;
+            cameraLimits = CalculateCameraLimits();
+            transform.position = new Vector3(Mathf.Clamp(focalPoint.position.x, -cameraLimits.x, cameraLimits.x),
+                    Mathf.Clamp(focalPoint.position.y, -cameraLimits.y, cameraLimits.y), -10);
         }
     }
 
