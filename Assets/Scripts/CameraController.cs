@@ -23,7 +23,7 @@ public class CameraController : MonoBehaviour
     private Vector2 cameraLimits, cameraOffset;
     private Vector3 newPos;
     private new Camera camera;
-    private MovementMode mode;
+    private MovementMode mode = MovementMode.Periscope;
 
     void Awake()
     {
@@ -41,16 +41,27 @@ public class CameraController : MonoBehaviour
     {
         if (GameManager.instance.globalState == GlobalState.Gameplay)
         {
+            if (mode == MovementMode.Periscope)
+            {
+                cameraOffset = new Vector2(cameraOffset.x + (Input.GetAxis("Mouse X") * MouseFactor), cameraOffset.y + (Input.GetAxis("Mouse Y") * MouseFactor));
+                newPos = new Vector3(Mathf.Clamp(cameraOffset.x, -cameraLimits.x, cameraLimits.x),
+                    Mathf.Clamp(cameraOffset.y, -cameraLimits.y, cameraLimits.y), -10);
+            }
+            else
+            {
+                cameraOffset = new Vector2(cameraOffset.x + (Input.GetAxis("Mouse X") * MouseFactor), cameraOffset.y + (Input.GetAxis("Mouse Y") * MouseFactor));
+            }
+
             if (Input.GetAxis("Mouse ScrollWheel") != 0)
             {
-                cameraZoomLevel = Mathf.Clamp(cameraZoomLevel -= Input.GetAxis("Mouse ScrollWheel")*2, 1, maxZoomLevel);
-                camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, CalculateCameraSize(cameraZoomLevel), Time.deltaTime*2);
+                cameraZoomLevel = Mathf.Clamp(cameraZoomLevel -= Input.GetAxis("Mouse ScrollWheel") * 2, 1, maxZoomLevel);
+                camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, CalculateCameraSize(cameraZoomLevel), Time.deltaTime * 2);
                 cameraLimits = CalculateCameraLimits();
             }
 
-            cameraOffset = new Vector2(cameraOffset.x + (Input.GetAxis("Mouse X") * MouseFactor), cameraOffset.y + (Input.GetAxis("Mouse Y") * MouseFactor));
-            newPos = new Vector3(Mathf.Clamp(focalPoint.position.x  + cameraOffset.x, - cameraLimits.x, cameraLimits.x),
-                Mathf.Clamp(focalPoint.position.y + cameraOffset.y, - cameraLimits.y, cameraLimits.y), -10);
+
+            newPos = new Vector3(Mathf.Clamp(focalPoint.position.x + cameraOffset.x, -cameraLimits.x, cameraLimits.x),
+                Mathf.Clamp(focalPoint.position.y + cameraOffset.y, -cameraLimits.y, cameraLimits.y), -10);
 
             transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime);
         }
