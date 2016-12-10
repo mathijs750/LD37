@@ -6,6 +6,8 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     [SerializeField]
+    private float MouseFactor = 1;
+    [SerializeField]
     private Transform focalPoint;
     [SerializeField]
     private Rect cameraBounds;
@@ -21,6 +23,8 @@ public class CameraController : MonoBehaviour
         camera = GetComponent<Camera>();
         maxZoomLevel = CalculateMaxZoomLevel();
         cameraLimits = CalculateCameraLimits();
+        transform.position = new Vector3(Mathf.Clamp(focalPoint.position.x, -cameraLimits.x, cameraLimits.x),
+                Mathf.Clamp(focalPoint.position.y, -cameraLimits.y, cameraLimits.y), -10);
         cameraWobble = transform.position;
     }
 
@@ -35,8 +39,8 @@ public class CameraController : MonoBehaviour
                 cameraLimits = CalculateCameraLimits();
             }
 
-            cameraWobble = new Vector3(Mathf.Clamp(focalPoint.position.x  + Input.GetAxis("Mouse X"),- cameraLimits.x, cameraLimits.x),
-                Mathf.Clamp(focalPoint.position.y + Input.GetAxis("Mouse Y"), - cameraLimits.y, cameraLimits.y), -10);
+            cameraWobble = new Vector3(Mathf.Clamp(focalPoint.position.x  + Input.GetAxis("Mouse X")* MouseFactor, - cameraLimits.x, cameraLimits.x),
+                Mathf.Clamp(focalPoint.position.y + Input.GetAxis("Mouse Y")* MouseFactor, - cameraLimits.y, cameraLimits.y), -10);
 
             transform.position = Vector3.Lerp(transform.position, cameraWobble, Time.deltaTime);
         }
