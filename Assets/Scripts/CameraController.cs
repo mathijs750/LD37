@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum MovementMode
+{
+    Drill,
+    Periscope
+}
+
 [RequireComponent(typeof(Camera))]
 public class CameraController : MonoBehaviour
 {
@@ -10,22 +16,25 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private Transform focalPoint;
     [SerializeField]
-    private Rect cameraBounds;
+    private Vector2 cameraBounds;
 
     private float cameraZoomLevel = 1;
     private float maxZoomLevel;
-    private Vector2 cameraLimits;
-    private Vector3 cameraWobble;
+    private Vector2 cameraLimits, cameraOffset;
+    private Vector3 newPos;
     private new Camera camera;
+    private MovementMode mode;
 
     void Awake()
     {
         camera = GetComponent<Camera>();
         maxZoomLevel = CalculateMaxZoomLevel();
         cameraLimits = CalculateCameraLimits();
+        Debug.Log(cameraLimits);
         transform.position = new Vector3(Mathf.Clamp(focalPoint.position.x, -cameraLimits.x, cameraLimits.x),
                 Mathf.Clamp(focalPoint.position.y, -cameraLimits.y, cameraLimits.y), -10);
-        cameraWobble = transform.position;
+        newPos = transform.position;
+        cameraOffset = Vector2.zero;
     }
 
     void Update()
@@ -34,15 +43,16 @@ public class CameraController : MonoBehaviour
         {
             if (Input.GetAxis("Mouse ScrollWheel") != 0)
             {
-                cameraZoomLevel = Mathf.Clamp(cameraZoomLevel -= Input.GetAxis("Mouse ScrollWheel")*2, .5f, maxZoomLevel);
+                cameraZoomLevel = Mathf.Clamp(cameraZoomLevel -= Input.GetAxis("Mouse ScrollWheel")*2, 1, maxZoomLevel);
                 camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, CalculateCameraSize(cameraZoomLevel), Time.deltaTime*2);
                 cameraLimits = CalculateCameraLimits();
             }
 
-            cameraWobble = new Vector3(Mathf.Clamp(focalPoint.position.x  + Input.GetAxis("Mouse X")* MouseFactor, - cameraLimits.x, cameraLimits.x),
-                Mathf.Clamp(focalPoint.position.y + Input.GetAxis("Mouse Y")* MouseFactor, - cameraLimits.y, cameraLimits.y), -10);
+            //cameraOffset = new Vector2(cameraOffset.x + (Input.GetAxis("Mouse X") * MouseFactor), cameraOffset.y + (Input.GetAxis("Mouse Y") * MouseFactor));
+            newPos = new Vector3(Mathf.Clamp(focalPoint.position.x  + cameraOffset.x, - cameraLimits.x, cameraLimits.x),
+                Mathf.Clamp(focalPoint.position.y + cameraOffset.y, - cameraLimits.y, cameraLimits.y), -10);
 
-            transform.position = Vector3.Lerp(transform.position, cameraWobble, Time.deltaTime);
+            transform.position = Vector3.Lerp(transform.position, newPos, Time.deltaTime);
         }
     }
 
@@ -58,7 +68,7 @@ public class CameraController : MonoBehaviour
         // Given that
         //  height = 2 * Camera.main.orthographicSize;
         //  width = height * Camera.main.aspect;
-        float maxOrhoSize = cameraBounds.size.x / Camera.main.aspect * .5f;
+        float maxOrhoSize = cameraBounds.x / Camera.main.aspect * .5f;
         return maxOrhoSize / CalculateCameraSize(1);
     }
 
@@ -75,12 +85,12 @@ public class CameraController : MonoBehaviour
     {
         Vector2 camRect = CalculateCameraRect();
         // divided by two to calculations
-        return new Vector2((cameraBounds.size.x - camRect.x) / 2, (cameraBounds.size.y - camRect.y) / 2);
+        return new Vector2((cameraBounds.x - camRect.x) / 2, (cameraBounds.x - camRect.y) / 2);
     }
 
     void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(0, 1, 0, 0.5f);
-        Gizmos.DrawCube(cameraBounds.center, cameraBounds.size);
+        Gizmos.DrawCube(Vector3.zero, cameraBounds);
     }
 }

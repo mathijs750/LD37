@@ -8,8 +8,7 @@ public enum GlobalState
     GameStartCutscene,
     Cutscene,
     GameEndCutscene,
-    Gameplay,
-    Focused
+    Gameplay
 }
 
 public class GameManager : MonoBehaviour
