@@ -48,7 +48,7 @@ public class CameraController : MonoBehaviour
                 cameraLimits = CalculateCameraLimits();
             }
 
-            //cameraOffset = new Vector2(cameraOffset.x + (Input.GetAxis("Mouse X") * MouseFactor), cameraOffset.y + (Input.GetAxis("Mouse Y") * MouseFactor));
+            cameraOffset = new Vector2(cameraOffset.x + (Input.GetAxis("Mouse X") * MouseFactor), cameraOffset.y + (Input.GetAxis("Mouse Y") * MouseFactor));
             newPos = new Vector3(Mathf.Clamp(focalPoint.position.x  + cameraOffset.x, - cameraLimits.x, cameraLimits.x),
                 Mathf.Clamp(focalPoint.position.y + cameraOffset.y, - cameraLimits.y, cameraLimits.y), -10);
 
@@ -85,7 +85,7 @@ public class CameraController : MonoBehaviour
     {
         Vector2 camRect = CalculateCameraRect();
         // divided by two to calculations
-        return new Vector2((cameraBounds.x - camRect.x) / 2, (cameraBounds.x - camRect.y) / 2);
+        return new Vector2((cameraBounds.x - camRect.x) / 2, (cameraBounds.y - camRect.y) / 2);
     }
 
     void OnDrawGizmosSelected()
