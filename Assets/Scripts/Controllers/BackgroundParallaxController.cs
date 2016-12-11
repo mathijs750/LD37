@@ -7,7 +7,7 @@ public class BackgroundParallaxController : MonoBehaviour
     [SerializeField]
     private CameraController cameraController;
     [SerializeField]
-    private float parallaxScaleX = 2, parallaxScaleY = 1;
+    private Vector2 parallaxScalePerisope, parallaxScaleDrill;
     [SerializeField]
     private Vector2 movementLimit;
     private Transform[] layers;
@@ -31,19 +31,43 @@ public class BackgroundParallaxController : MonoBehaviour
             {
                 deltaPos.x = Mathf.Clamp(Camera.main.transform.position.x, -movementLimit.x, movementLimit.x);
                 deltaPos.y = Mathf.Clamp(Camera.main.transform.position.y, -movementLimit.y, movementLimit.y);
+
+                for (int i = 1; i < layers.Length; i++)
+                {
+                    layers[i].position = new Vector3(-deltaPos.x * i * parallaxScaleDrill.x,
+                        -deltaPos.y * i * parallaxScaleDrill.y, layers[i].position.z);
+                }
             }
             else
             {
-                deltaPos.x = 0;
-            }
-
-            for (int i = 1; i < layers.Length; i++)
-            {
-                layers[i].position = new Vector3(-deltaPos.x * i * parallaxScaleX,
-                    -deltaPos.y * i * parallaxScaleY, layers[i].position.z);
-            }
+                deltaPos.y = Mathf.Clamp(Camera.main.transform.position.y, -movementLimit.y, movementLimit.y);
+                for (int i = 1; i < layers.Length; i++)
+                {
+                    layers[i].position = new Vector3(0, -deltaPos.y * i * parallaxScalePerisope.y, layers[i].position.z);
+                }
+            } 
         }
-
-
 	}
+
+    void parallax_OnModeChange(MovementMode old, MovementMode current)
+    {
+        if (current == MovementMode.Periscope)
+        {
+            transform.localScale = Vector3.one;
+        }
+        else if (current == MovementMode.Drill)
+        {
+            transform.localScale = new Vector3(.5f, .5f, .5f);
+        }
+    }
+
+    void OnEnable()
+    {
+        CameraController.OnMovementModeChange += parallax_OnModeChange;
+    }
+
+    void OnDisable()
+    {
+        CameraController.OnMovementModeChange -= parallax_OnModeChange;
+    }
 }

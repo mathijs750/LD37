@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public enum MovementMode
 {
@@ -17,18 +15,21 @@ public class CameraController : MonoBehaviour
     [SerializeField]
     private Transform focalPoint;
     [SerializeField]
-    private Vector2 cameraBounds;
+    private Vector2 cameraBounds, periscopeBounds;
     [SerializeField]
     private float periscopeSpeed = .0004f;
 
     private float cameraZoomLevel = 1;
-    private float maxZoomLevel;
+    private float maxZoomLevel, periscopeLimit;
     private Vector2 cameraLimits, cameraOffset;
     private Vector3 newPos;
     private new Camera camera;
 
     private MovementMode _mode = MovementMode.Drill;
     public MovementMode mode { get { return _mode; } }
+
+    public delegate void ChangeMovementMode(MovementMode oldMode, MovementMode currentMode);
+    public static event ChangeMovementMode OnMovementModeChange;
 
     void Awake()
     {
@@ -49,7 +50,8 @@ public class CameraController : MonoBehaviour
             {
                 cameraZoomLevel = Mathf.Clamp(cameraZoomLevel -= Input.GetAxis("Mouse ScrollWheel") * 2, 1, maxZoomLevel);
                 camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, CalculateCameraSize(cameraZoomLevel), Time.deltaTime * 2);
-                cameraLimits = CalculateCameraLimits();
+                if (mode == MovementMode.Periscope) { periscopeLimit = CalculatePeriscopeLimit(); }
+                else { cameraLimits = CalculateCameraLimits(); }  
             }
 
             // No x boundss
@@ -64,7 +66,7 @@ public class CameraController : MonoBehaviour
                     cameraOffset.x += (Input.mousePosition.x - Screen.width * 0.85f) * periscopeSpeed;
                 }
                 cameraOffset = new Vector2(cameraOffset.x, cameraOffset.y + (Input.GetAxis("Mouse Y") * MouseFactor));
-                newPos = new Vector3(cameraOffset.x, Mathf.Clamp(cameraOffset.y, -cameraLimits.y, cameraLimits.y), -10);
+                newPos = new Vector3(cameraOffset.x, Mathf.Clamp(cameraOffset.y, -periscopeLimit, periscopeLimit), -10);
             }
             else
             {
@@ -89,6 +91,12 @@ public class CameraController : MonoBehaviour
             transform.position = new Vector3(Mathf.Clamp(focalPoint.position.x, -cameraLimits.x, cameraLimits.x),
                     Mathf.Clamp(focalPoint.position.y, -cameraLimits.y, cameraLimits.y), -10);
         }
+        else if (newMode == MovementMode.Periscope)
+        {
+            transform.position = new Vector3(0, 0, -10);
+        }
+
+        if (OnMovementModeChange != null) { OnMovementModeChange(old, _mode); }
     }
 
     private float CalculateCameraSize(float zoomLevel)
@@ -122,6 +130,12 @@ public class CameraController : MonoBehaviour
         Vector2 camRect = CalculateCameraRect();
         // divided by two to calculations
         return new Vector2((cameraBounds.x - camRect.x) / 2, (cameraBounds.y - camRect.y) / 2);
+    }
+
+    private float CalculatePeriscopeLimit()
+    {
+        Vector2 camRect = CalculateCameraRect();
+        return (periscopeBounds.y - camRect.y) / 2;
     }
 
     void OnDrawGizmosSelected()
