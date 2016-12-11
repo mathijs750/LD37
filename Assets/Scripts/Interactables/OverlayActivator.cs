@@ -6,8 +6,12 @@ public class OverlayActivator : MonoBehaviour, IInteractable
 {
     [SerializeField]
     private OverlayType type;
-    [SerializeField]
     private DrillManager drillManager;
+
+    void Start()
+    {
+        drillManager = transform.parent.GetComponent<DrillManager>();
+    }
 
     public void Interact()
     {

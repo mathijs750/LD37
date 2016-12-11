@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.01.07.00">
+<objects serializationModel="Studio.01.08.00">
     <object class="Event" id="{2ce4e517-742f-4ecd-b88b-0925d1dba139}">
         <property name="name">
             <value>guitarstings</value>
@@ -158,7 +158,6 @@
         <relationship name="effects">
             <destination>{7b2b3f6a-f72e-4732-9e4c-c92e21caea49}</destination>
             <destination>{0220c76d-f1b7-491b-a3f9-1cf1be7dfd0f}</destination>
-            <destination>{003b4ca4-c02a-4ed0-b145-1552a54a7230}</destination>
             <destination>{2bbfa312-ca3b-4ffd-bb9b-32629c3b8d93}</destination>
         </relationship>
     </object>
@@ -241,7 +240,6 @@
         </property>
     </object>
     <object class="MixerBusFader" id="{0220c76d-f1b7-491b-a3f9-1cf1be7dfd0f}"/>
-    <object class="SpatialiserEffect" id="{003b4ca4-c02a-4ed0-b145-1552a54a7230}"/>
     <object class="MixerSend" id="{2bbfa312-ca3b-4ffd-bb9b-32629c3b8d93}">
         <property name="inputFormat">
             <value>1</value>

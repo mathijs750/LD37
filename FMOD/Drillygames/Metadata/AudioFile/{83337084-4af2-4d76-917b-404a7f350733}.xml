@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.01.07.00">
+<objects serializationModel="Studio.01.08.00">
     <object class="AudioFile" id="{83337084-4af2-4d76-917b-404a7f350733}">
+        <property name="assetPath">
+            <value>ambiences/ambience_drillcabin_staticAC.wav</value>
+        </property>
         <property name="frequencyInKHz">
             <value>48</value>
         </property>
@@ -10,11 +13,8 @@
         <property name="length">
             <value>28.235291666666665</value>
         </property>
-        <property name="audioFilePath">
-            <value>$(AUDIO_BIN_DIR)/ambience_drillcabin_staticAC {c10a3181-6593-40a6-a6f0-29cadf66938f}.wav</value>
-        </property>
-        <relationship name="container">
-            <destination>{3bd1b48b-7c85-40fe-a4d7-b3f54063aefe}</destination>
+        <relationship name="masterAssetFolder">
+            <destination>{ff2bf3a9-3637-449a-bc53-74f98e524003}</destination>
         </relationship>
     </object>
 </objects>

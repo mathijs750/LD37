@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.01.07.00">
+<objects serializationModel="Studio.01.08.00">
     <object class="Event" id="{8dd9537d-f6de-45c7-9c7b-7f2c113004a8}">
         <property name="name">
             <value>switch_04</value>
         </property>
         <property name="outputFormat">
-            <value>1</value>
+            <value>2</value>
         </property>
         <relationship name="mixer">
             <destination>{21d1e9a5-b217-440f-88d9-a29a3d298396}</destination>
@@ -182,7 +182,7 @@
     <object class="SpatialiserEffect" id="{e8d1c5fb-272b-4cdf-8423-3d2c5fee9430}"/>
     <object class="MixerSend" id="{868ea52a-5ad6-47ec-8774-db8f499c4143}">
         <property name="inputFormat">
-            <value>1</value>
+            <value>2</value>
         </property>
         <relationship name="mixerReturn">
             <destination>{708543af-917e-4a19-a9f4-0ecfa908cbcd}</destination>

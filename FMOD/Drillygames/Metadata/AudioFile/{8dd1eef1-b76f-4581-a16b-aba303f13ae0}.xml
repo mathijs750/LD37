@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.01.07.00">
+<objects serializationModel="Studio.01.08.00">
     <object class="AudioFile" id="{8dd1eef1-b76f-4581-a16b-aba303f13ae0}">
+        <property name="assetPath">
+            <value>music/guitarstings/guitarsting_04.wav</value>
+        </property>
         <property name="frequencyInKHz">
             <value>44.0999985</value>
         </property>
@@ -10,11 +13,8 @@
         <property name="length">
             <value>4.8334240362811789</value>
         </property>
-        <property name="audioFilePath">
-            <value>$(AUDIO_BIN_DIR)/guitarsting_04 {e4069bdd-6894-496b-ae30-e845a2a4709c}.wav</value>
-        </property>
-        <relationship name="container">
-            <destination>{87756f1f-ef1b-485b-bf15-1180110ad438}</destination>
+        <relationship name="masterAssetFolder">
+            <destination>{ff2bf3a9-3637-449a-bc53-74f98e524003}</destination>
         </relationship>
     </object>
 </objects>

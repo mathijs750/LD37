@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.01.07.00">
+<objects serializationModel="Studio.01.08.00">
     <object class="Event" id="{8aec5585-bd65-419f-a793-5a3b72405f84}">
         <property name="name">
             <value>ambience_forest</value>
@@ -135,7 +135,6 @@
             <destination>{b3d99a13-246d-4f3b-8f7c-6bee0460779f}</destination>
             <destination>{9bc5a6dc-bc37-4e90-98da-cde2ec0c5dad}</destination>
             <destination>{43fb61b8-df0e-4eb4-9bff-f926781ee5d8}</destination>
-            <destination>{e07093ef-5b1b-4b26-bebc-9ea51edd2818}</destination>
             <destination>{83b002fd-9a37-4861-95d3-ca96ffb60652}</destination>
         </relationship>
     </object>
@@ -182,7 +181,6 @@
         </relationship>
     </object>
     <object class="MixerBusFader" id="{43fb61b8-df0e-4eb4-9bff-f926781ee5d8}"/>
-    <object class="SpatialiserEffect" id="{e07093ef-5b1b-4b26-bebc-9ea51edd2818}"/>
     <object class="MixerSend" id="{83b002fd-9a37-4861-95d3-ca96ffb60652}">
         <property name="inputFormat">
             <value>1</value>
@@ -196,9 +194,6 @@
         <property name="identifier">
             <value>FMOD Lowpass Simple</value>
         </property>
-        <property name="uiName">
-            <value>Lowpass Simple</value>
-        </property>
         <relationship name="pluginParameters">
             <destination>{abfd615f-60ba-4936-b6e7-3d486a79f3d8}</destination>
         </relationship>
@@ -207,14 +202,8 @@
         <property name="name">
             <value>Cutoff freq</value>
         </property>
-        <property name="units">
-            <value>hz</value>
-        </property>
         <property name="curve">
             <value>LinearPiecewiseCurveStrategy{(0.000000,10.000000)(1.000000,100.000000)(2.000000,400.000000)(3.000000,750.000000)(4.000000,1250.000000)(5.000000,2000.000000)(6.000000,3200.000000)(7.000000,5500.000000)(8.000000,10000.000000)(9.000000,18000.000000)(10.000000,22000.000000)}</value>
-        </property>
-        <property name="defaultValue">
-            <value>5000</value>
         </property>
         <property name="value">
             <value>1800</value>

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.01.07.00">
+<objects serializationModel="Studio.01.08.00">
     <object class="AudioFile" id="{346a9818-7242-4997-bb67-dd8dbc6f4380}">
+        <property name="assetPath">
+            <value>fx/switch_03.wav</value>
+        </property>
         <property name="frequencyInKHz">
             <value>48</value>
         </property>
@@ -10,11 +13,8 @@
         <property name="length">
             <value>1.9314791666666666</value>
         </property>
-        <property name="audioFilePath">
-            <value>$(AUDIO_BIN_DIR)/switch_03 {529d925b-9812-4905-a32c-16c93a312413}.wav</value>
-        </property>
-        <relationship name="container">
-            <destination>{7e1463a7-1266-4bda-9cee-173f4263dcbd}</destination>
+        <relationship name="masterAssetFolder">
+            <destination>{ff2bf3a9-3637-449a-bc53-74f98e524003}</destination>
         </relationship>
     </object>
 </objects>

@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.01.07.00">
+<objects serializationModel="Studio.01.08.00">
     <object class="AudioFile" id="{7841f99f-0694-4be1-b0e1-be62fa485b62}">
+        <property name="assetPath">
+            <value>fx/Drill_move.wav</value>
+        </property>
         <property name="frequencyInKHz">
             <value>48</value>
         </property>
@@ -10,11 +13,8 @@
         <property name="length">
             <value>5.8306458333333335</value>
         </property>
-        <property name="audioFilePath">
-            <value>$(AUDIO_BIN_DIR)/Drill_move {ab5e12f9-5839-4f24-b145-d9a5e3b80bf6}.wav</value>
-        </property>
-        <relationship name="container">
-            <destination>{7e1463a7-1266-4bda-9cee-173f4263dcbd}</destination>
+        <relationship name="masterAssetFolder">
+            <destination>{ff2bf3a9-3637-449a-bc53-74f98e524003}</destination>
         </relationship>
     </object>
 </objects>

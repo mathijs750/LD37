@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.01.07.00">
+<objects serializationModel="Studio.01.08.00">
     <object class="Event" id="{807f9e0d-12de-4bac-9f53-d56dc280e173}">
         <property name="name">
             <value>drill_move</value>
@@ -118,7 +118,6 @@
             <destination>{d04367b7-e39e-45f8-99a8-0193ef25fc4d}</destination>
             <destination>{e291fc1d-6a5b-490f-ab93-6f87b6d453de}</destination>
             <destination>{32989fcb-2842-4444-b18d-d69a67860de1}</destination>
-            <destination>{7bac7f30-0a2b-4e74-a32c-7ac9ff84f950}</destination>
             <destination>{ac908cd1-3ae4-45a2-8464-cc4b9b4ba15a}</destination>
         </relationship>
     </object>
@@ -168,7 +167,6 @@
         </property>
     </object>
     <object class="MixerBusFader" id="{32989fcb-2842-4444-b18d-d69a67860de1}"/>
-    <object class="SpatialiserEffect" id="{7bac7f30-0a2b-4e74-a32c-7ac9ff84f950}"/>
     <object class="MixerSend" id="{ac908cd1-3ae4-45a2-8464-cc4b9b4ba15a}">
         <property name="inputFormat">
             <value>1</value>
@@ -182,9 +180,6 @@
         <property name="identifier">
             <value>FMOD Lowpass Simple</value>
         </property>
-        <property name="uiName">
-            <value>Lowpass Simple</value>
-        </property>
         <relationship name="pluginParameters">
             <destination>{c3ec0a77-37cb-4422-8329-b56ba94e8d48}</destination>
         </relationship>
@@ -193,14 +188,8 @@
         <property name="name">
             <value>Cutoff freq</value>
         </property>
-        <property name="units">
-            <value>hz</value>
-        </property>
         <property name="curve">
             <value>LinearPiecewiseCurveStrategy{(0.000000,10.000000)(1.000000,100.000000)(2.000000,400.000000)(3.000000,750.000000)(4.000000,1250.000000)(5.000000,2000.000000)(6.000000,3200.000000)(7.000000,5500.000000)(8.000000,10000.000000)(9.000000,18000.000000)(10.000000,22000.000000)}</value>
-        </property>
-        <property name="defaultValue">
-            <value>5000</value>
         </property>
         <property name="value">
             <value>4600</value>

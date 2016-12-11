@@ -102,6 +102,7 @@ public class CameraController : MonoBehaviour
         //  height = 2 * Camera.main.orthographicSize;
         //  width = height * Camera.main.aspect;
         float maxOrhoSize = cameraBounds.x / Camera.main.aspect * .5f;
+        Debug.Log(maxOrhoSize / CalculateCameraSize(1));
         return maxOrhoSize / CalculateCameraSize(1);
     }
 

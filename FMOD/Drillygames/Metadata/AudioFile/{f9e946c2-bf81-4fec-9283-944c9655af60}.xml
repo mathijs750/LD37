@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<objects serializationModel="Studio.01.07.00">
+<objects serializationModel="Studio.01.08.00">
     <object class="AudioFile" id="{f9e946c2-bf81-4fec-9283-944c9655af60}">
+        <property name="assetPath">
+            <value>metalrandom_05.wav</value>
+        </property>
         <property name="frequencyInKHz">
             <value>48</value>
         </property>
@@ -10,11 +13,8 @@
         <property name="length">
             <value>1.8564375</value>
         </property>
-        <property name="audioFilePath">
-            <value>$(AUDIO_BIN_DIR)/metalrandom_05 {fe6a1c2d-91c9-49b8-b18a-07abc692adbc}.wav</value>
-        </property>
-        <relationship name="container">
-            <destination>{1756280c-03ec-4f91-b128-ab99d3e7f27e}</destination>
+        <relationship name="masterAssetFolder">
+            <destination>{ff2bf3a9-3637-449a-bc53-74f98e524003}</destination>
         </relationship>
     </object>
 </objects>
