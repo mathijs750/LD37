@@ -13,6 +13,7 @@ public enum GlobalState
 
 public class GameManager : MonoBehaviour
 {
+    [Header("Controllers")]
     [SerializeField]
     private CameraController cameraController;
     [SerializeField]
@@ -21,6 +22,8 @@ public class GameManager : MonoBehaviour
     private PlayerController playerController;
     [SerializeField]
     private DrillManager drillManager;
+    [SerializeField]
+    private BackgroundSwitchController switchController;
 
     public static GameManager instance = null;
     public delegate void OnGlobalStateChange(GlobalState currentState, GlobalState oldState);
@@ -47,6 +50,14 @@ public class GameManager : MonoBehaviour
         _globalState = GlobalState.Gameplay;
         // _globalState = GlobalState.MainMenu;
     }
+
+    public void nextLayer()
+    {
+        globalState = GlobalState.Cutscene;
+        openOverlay(OverlayType.DepthMeter);
+        switchController.NextLayer();
+    }
+
 
     public void openOverlay(OverlayType type)
     {

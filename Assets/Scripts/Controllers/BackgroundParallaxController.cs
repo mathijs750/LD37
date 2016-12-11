@@ -45,6 +45,7 @@ public class BackgroundParallaxController : MonoBehaviour
                 {
                     layers[i].position = new Vector3(0, -deltaPos.y * i * parallaxScalePerisope.y, layers[i].position.z);
                 }
+
             } 
         }
 	}
