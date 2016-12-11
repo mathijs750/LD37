@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.01.08.00">
     <object class="AudioFile" id="{e7886e50-accd-4f9c-9e82-3a40410e1050}">
         <property name="assetPath">
-            <value>metalrandom_01.wav</value>
+            <value>ambiences/metalrandom/metalrandom_01.wav</value>
         </property>
         <property name="frequencyInKHz">
             <value>48</value>

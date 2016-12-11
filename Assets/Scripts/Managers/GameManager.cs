@@ -53,6 +53,7 @@ public class GameManager : MonoBehaviour
 
     public void nextLayer()
     {
+        Debug.Log("Next Layer!");
         globalState = GlobalState.Cutscene;
         openOverlay(OverlayType.DepthMeter);
         switchController.NextLayer();
@@ -62,8 +63,8 @@ public class GameManager : MonoBehaviour
     public void openOverlay(OverlayType type)
     {
         drillManager.gameObject.SetActive(false);
-        uiController.ShowOverlay(type);
         playerController.gameObject.SetActive(false);
+
         if (type == OverlayType.Periscope)
         {
             cameraController.ChangeMode(MovementMode.Periscope);
@@ -71,6 +72,15 @@ public class GameManager : MonoBehaviour
         else
         {
             cameraController.ChangeMode(MovementMode.Overlay);
+        }
+
+        if (type != OverlayType.DepthMeter)
+        {
+            uiController.ShowOverlay(type,true);
+        }
+        else
+        {
+            uiController.ShowOverlay(type, false);
         }
     }
 

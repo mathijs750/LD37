@@ -71,8 +71,8 @@
             <destination>{884f9528-e316-46dd-9e5d-0d5924193de0}</destination>
         </relationship>
         <relationship name="markers">
-            <destination>{81e77df4-3cb8-4e83-a7fe-8907598f5533}</destination>
             <destination>{375d9c45-0084-4b9a-ba30-53f0845cfe51}</destination>
+            <destination>{81e77df4-3cb8-4e83-a7fe-8907598f5533}</destination>
         </relationship>
     </object>
     <object class="EventMixerMaster" id="{4a2abedc-53c8-4022-85e6-0ae312d7a0d5}">
@@ -133,17 +133,6 @@
             <destination>{4a2abedc-53c8-4022-85e6-0ae312d7a0d5}</destination>
         </relationship>
     </object>
-    <object class="SustainPoint" id="{81e77df4-3cb8-4e83-a7fe-8907598f5533}">
-        <property name="position">
-            <value>2.5</value>
-        </property>
-        <relationship name="timeline">
-            <destination>{9eba9581-a0b9-4955-b9f5-18cf9f4fbcb2}</destination>
-        </relationship>
-        <relationship name="markerTrack">
-            <destination>{48e67f4a-4788-4ebd-a2ac-28ebbec7d285}</destination>
-        </relationship>
-    </object>
     <object class="NamedMarker" id="{375d9c45-0084-4b9a-ba30-53f0845cfe51}">
         <property name="position">
             <value>0</value>
@@ -158,11 +147,22 @@
             <destination>{48e67f4a-4788-4ebd-a2ac-28ebbec7d285}</destination>
         </relationship>
     </object>
+    <object class="SustainPoint" id="{81e77df4-3cb8-4e83-a7fe-8907598f5533}">
+        <property name="position">
+            <value>2.5</value>
+        </property>
+        <relationship name="timeline">
+            <destination>{9eba9581-a0b9-4955-b9f5-18cf9f4fbcb2}</destination>
+        </relationship>
+        <relationship name="markerTrack">
+            <destination>{48e67f4a-4788-4ebd-a2ac-28ebbec7d285}</destination>
+        </relationship>
+    </object>
     <object class="MixerBusEffectChain" id="{0913f7db-d41a-40d5-8b5b-691424e3209d}">
         <relationship name="effects">
-            <destination>{32cb3100-f5f3-4eb0-9d38-78a78add5701}</destination>
             <destination>{a145d7b9-b13e-45a1-bff9-e4cc782dc508}</destination>
             <destination>{ae388729-9952-4f2a-969e-894619381434}</destination>
+            <destination>{32cb3100-f5f3-4eb0-9d38-78a78add5701}</destination>
             <destination>{30cc0f4e-7b99-4701-a57d-6a5b509c56d8}</destination>
         </relationship>
     </object>
@@ -252,6 +252,8 @@
         </relationship>
     </object>
     <object class="MixerBusPanner" id="{36ebca37-af18-43da-9552-0004ae67d5dd}"/>
+    <object class="MixerBusFader" id="{a145d7b9-b13e-45a1-bff9-e4cc782dc508}"/>
+    <object class="SpatialiserEffect" id="{ae388729-9952-4f2a-969e-894619381434}"/>
     <object class="SFXReverbEffect" id="{32cb3100-f5f3-4eb0-9d38-78a78add5701}">
         <property name="decayTime">
             <value>650</value>
@@ -284,8 +286,6 @@
             <value>-11</value>
         </property>
     </object>
-    <object class="MixerBusFader" id="{a145d7b9-b13e-45a1-bff9-e4cc782dc508}"/>
-    <object class="SpatialiserEffect" id="{ae388729-9952-4f2a-969e-894619381434}"/>
     <object class="MixerSend" id="{30cc0f4e-7b99-4701-a57d-6a5b509c56d8}">
         <property name="inputFormat">
             <value>2</value>

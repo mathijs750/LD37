@@ -17,14 +17,18 @@ public class OverlayActivator : MonoBehaviour, IInteractable
     {
         if (type == OverlayType.DigDeeper)
         {
+            Debug.Log("DigDeeper doen!");
             if (drillManager.allMachinesFixed())
             {
-                GameManager.instance.openOverlay(OverlayType.DigDeeper);
+                GameManager.instance.nextLayer();
                 return;
             }
         }
+        else
+        {
+            GameManager.instance.openOverlay(type);
+        }
 
-        GameManager.instance.openOverlay(type);
     }
 
     void OnDrawGizmos()

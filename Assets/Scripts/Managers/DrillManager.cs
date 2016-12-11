@@ -33,6 +33,7 @@ public class DrillManager : MonoBehaviour
         {
             if (brokenMachines[i].gameObject == invoker)
             {
+                Debug.Log("New fixed machine");
                 brokenMachines[i].isFixed = true;
             }
         }

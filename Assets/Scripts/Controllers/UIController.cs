@@ -24,9 +24,9 @@ public class UIController : MonoBehaviour
              { OverlayType.DigDeeper, 5 }};
     }
 
-    public void ShowOverlay(OverlayType type)
+    public void ShowOverlay(OverlayType type, bool showBack)
     {
-        transform.GetChild(transform.childCount - 1).gameObject.SetActive(true); // back button
+        if (showBack) { transform.GetChild(transform.childCount - 1).gameObject.SetActive(true); }
         transform.GetChild(overlayTypes[type]).gameObject.SetActive(true);
     }
 

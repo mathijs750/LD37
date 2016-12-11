@@ -13,8 +13,12 @@ public class FixableObject : MonoBehaviour, IInteractable{
     private GameObject desiredPart;
     [SerializeField]
     private PlayerController player;
-    [SerializeField]
     private DrillManager drillManager;
+
+    void Awake()
+    {
+        drillManager = transform.parent.GetComponent<DrillManager>();
+    }
 
     public void Interact()
     {
