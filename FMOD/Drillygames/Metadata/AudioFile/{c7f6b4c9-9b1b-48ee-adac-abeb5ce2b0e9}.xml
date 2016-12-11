@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="AudioFile" id="{c7f6b4c9-9b1b-48ee-adac-abeb5ce2b0e9}">
+        <property name="frequencyInKHz">
+            <value>44.0999985</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>3.3684580498866215</value>
+        </property>
+        <property name="audioFilePath">
+            <value>$(AUDIO_BIN_DIR)/guitarsting_06 {11ce1e3b-37af-4491-93be-dc68ac4e679d}.wav</value>
+        </property>
+        <relationship name="container">
+            <destination>{87756f1f-ef1b-485b-bf15-1180110ad438}</destination>
+        </relationship>
+    </object>
+</objects>

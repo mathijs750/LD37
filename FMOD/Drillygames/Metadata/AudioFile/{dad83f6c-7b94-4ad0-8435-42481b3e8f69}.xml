@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="AudioFile" id="{dad83f6c-7b94-4ad0-8435-42481b3e8f69}">
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>203.29412500000001</value>
+        </property>
+        <property name="audioFilePath">
+            <value>$(AUDIO_BIN_DIR)/ambience_music_04 {f7aab9c7-68f3-4850-97ee-7edc9f11fd8f}.wav</value>
+        </property>
+        <relationship name="container">
+            <destination>{5291868b-6269-4440-9b8f-3ac6947a9986}</destination>
+        </relationship>
+    </object>
+</objects>

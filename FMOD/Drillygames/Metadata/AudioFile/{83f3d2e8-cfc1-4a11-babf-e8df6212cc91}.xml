@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.07.00">
+    <object class="AudioFile" id="{83f3d2e8-cfc1-4a11-babf-e8df6212cc91}">
+        <property name="frequencyInKHz">
+            <value>48</value>
+        </property>
+        <property name="channelCount">
+            <value>2</value>
+        </property>
+        <property name="length">
+            <value>14.117645833333333</value>
+        </property>
+        <property name="audioFilePath">
+            <value>$(AUDIO_BIN_DIR)/ambience_drillcabin_rumblelow {46cd994e-3227-42c0-ae0d-5f76704e60b0}.wav</value>
+        </property>
+        <relationship name="container">
+            <destination>{3bd1b48b-7c85-40fe-a4d7-b3f54063aefe}</destination>
+        </relationship>
+    </object>
+</objects>
