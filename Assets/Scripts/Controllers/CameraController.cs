@@ -26,7 +26,9 @@ public class CameraController : MonoBehaviour
     private Vector2 cameraLimits, cameraOffset;
     private Vector3 newPos;
     private new Camera camera;
-    private MovementMode mode = MovementMode.Drill;
+
+    private MovementMode _mode = MovementMode.Drill;
+    public MovementMode mode { get { return _mode; } }
 
     void Awake()
     {
@@ -77,8 +79,8 @@ public class CameraController : MonoBehaviour
 
     public void ChangeMode(MovementMode newMode)
     {
-        MovementMode old = mode;
-        mode = newMode;
+        MovementMode old = _mode;
+        _mode = newMode;
 
         if (old == MovementMode.Periscope)
         {
