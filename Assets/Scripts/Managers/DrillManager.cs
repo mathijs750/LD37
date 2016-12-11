@@ -2,26 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum InteractionType {
-    pickUp,
-    pickUpReciever,
-    overlayActivator
+[System.Serializable]
+public struct brokenMachine
+{
+    public GameObject gameObject;
+    public bool isFixed;
 }
-
 
 public class DrillManager : MonoBehaviour
 {
-    private Dictionary<int, InteractionType> interactables;
-	void Awake () {
-        interactables = new Dictionary<int, InteractionType> { { 0, InteractionType.overlayActivator } };
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    [SerializeField]
+    private brokenMachine[] brokenMachines;
 
-    public void Interact(int childIndex)
+    void Awake()
     {
+    }
+
+    public bool allMachinesFixed()
+    {
+        for (int i = 0; i < brokenMachines.Length; i++)
+        {
+            if (!brokenMachines[i].isFixed) { return false; }
+        }
+        return true;
+    }
+
+    public void SetFixed(GameObject invoker)
+    {
+        for (int i = 0; i < brokenMachines.Length; i++)
+        {
+            if (brokenMachines[i].gameObject == invoker)
+            {
+                brokenMachines[i].isFixed = true;
+            }
+        }
     }
 }

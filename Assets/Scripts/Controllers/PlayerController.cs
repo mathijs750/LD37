@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     private RaycastHit2D hit;
     private Vector3 newPosition;
     private AILerp lerp;
+    private GameObject _holdObject;
+    public GameObject holdObject { get { return _holdObject; } }
+
 
 	void Awake()
     {

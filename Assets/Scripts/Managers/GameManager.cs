@@ -52,6 +52,7 @@ public class GameManager : MonoBehaviour
     {
         drillManager.gameObject.SetActive(false);
         uiController.ShowOverlay(type);
+        playerController.gameObject.SetActive(false);
         if (type == OverlayType.Periscope)
         {
             cameraController.ChangeMode(MovementMode.Periscope);
@@ -67,5 +68,6 @@ public class GameManager : MonoBehaviour
         cameraController.ChangeMode(MovementMode.Drill);
         uiController.CloseActiveOverlay();
         drillManager.gameObject.SetActive(true);
+        playerController.gameObject.SetActive(true);
     }
 }
