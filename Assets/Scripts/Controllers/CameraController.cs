@@ -31,6 +31,8 @@ public class CameraController : MonoBehaviour
     public delegate void ChangeMovementMode(MovementMode oldMode, MovementMode currentMode);
     public static event ChangeMovementMode OnMovementModeChange;
 
+    private AudioEventManager audioEventManager;
+
     void Awake()
     {
         camera = GetComponent<Camera>();
@@ -40,6 +42,7 @@ public class CameraController : MonoBehaviour
                 Mathf.Clamp(focalPoint.position.y, -cameraLimits.y, cameraLimits.y), -10);
         newPos = transform.position;
         cameraOffset = Vector2.zero;
+        audioEventManager = GetComponent<AudioEventManager>();
     }
 
     void Update()
@@ -57,6 +60,7 @@ public class CameraController : MonoBehaviour
             // No x boundss
             if (mode == MovementMode.Periscope)
             {
+                
                 if ((Input.mousePosition.x < Screen.width * 0.15f))
                 {
                     cameraOffset.x -= (Screen.width * 0.15f - Input.mousePosition.x) * periscopeSpeed;
@@ -86,6 +90,10 @@ public class CameraController : MonoBehaviour
 
         if (old == MovementMode.Periscope)
         {
+            audioEventManager.setParameter(new eventParameters(0, "periscope_active02"),0);
+            audioEventManager.setParameter(new eventParameters(1, "musicfader"), 0);
+            
+            GetComponent<AudioMomentController>().ChangeValue(false);
             cameraZoomLevel = 1;
             cameraLimits = CalculateCameraLimits();
             transform.position = new Vector3(Mathf.Clamp(focalPoint.position.x, -cameraLimits.x, cameraLimits.x),
@@ -93,6 +101,10 @@ public class CameraController : MonoBehaviour
         }
         else if (newMode == MovementMode.Periscope)
         {
+            audioEventManager.setParameter(new eventParameters(0, "periscope_active02"), 1);
+            audioEventManager.setParameter(new eventParameters(1, "musicfader"), 1);
+
+            GetComponent<AudioMomentController>().ChangeValue(true);
             transform.position = new Vector3(0, 0, -10);
         }
 

@@ -12,9 +12,11 @@ public class BackgroundParallaxController : MonoBehaviour
     private Vector2 movementLimit;
     private Transform[] layers;
     private Vector3 deltaPos;
+    private AudioMomentController momentController;
 
 	void Start ()
     {
+        momentController = GetComponent<AudioMomentController>();
         layers = new Transform[transform.childCount];
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -55,10 +57,12 @@ public class BackgroundParallaxController : MonoBehaviour
         if (current == MovementMode.Periscope)
         {
             transform.localScale = Vector3.one;
+            momentController.ChangeValue(true);
         }
         else if (current == MovementMode.Drill)
         {
             transform.localScale = new Vector3(.5f, .5f, .5f);
+            momentController.ChangeValue(false);
         }
     }
 

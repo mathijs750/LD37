@@ -5,7 +5,7 @@
             <value>periscope</value>
         </property>
         <property name="outputFormat">
-            <value>2</value>
+            <value>1</value>
         </property>
         <relationship name="mixer">
             <destination>{a946dac3-1869-4887-b7d1-05da532acf99}</destination>
@@ -133,7 +133,6 @@
     <object class="MixerBusEffectChain" id="{7e027b14-2f7f-4c8b-9463-195307826ad8}">
         <relationship name="effects">
             <destination>{292d5bed-903b-424e-97dd-c4b9d79ae977}</destination>
-            <destination>{a56fa22a-f239-4a1a-af07-dced56ef7025}</destination>
             <destination>{791f5241-72f5-4037-9578-986702a26eb6}</destination>
         </relationship>
     </object>
@@ -146,7 +145,6 @@
     </object>
     <object class="MixerBusPanner" id="{6771f846-2894-4125-a3be-c38a4e55ff83}"/>
     <object class="MixerBusFader" id="{292d5bed-903b-424e-97dd-c4b9d79ae977}"/>
-    <object class="SpatialiserEffect" id="{a56fa22a-f239-4a1a-af07-dced56ef7025}"/>
     <object class="SFXReverbEffect" id="{791f5241-72f5-4037-9578-986702a26eb6}">
         <property name="decayTime">
             <value>650</value>
