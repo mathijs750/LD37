@@ -17,9 +17,9 @@ public class OverlayActivator : MonoBehaviour, IInteractable
     {
         if (type == OverlayType.DigDeeper)
         {
-            Debug.Log("DigDeeper doen!");
             if (drillManager.allMachinesFixed())
             {
+                Debug.LogWarning("All machinesFixed");
                 GameManager.instance.nextLayer();
                 return;
             }

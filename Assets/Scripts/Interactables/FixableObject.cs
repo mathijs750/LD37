@@ -6,39 +6,53 @@ public enum FixableMode
     NewPart,
     Hit
 }
-public class FixableObject : MonoBehaviour, IInteractable{
+public class FixableObject : MonoBehaviour, IInteractable
+{
+    [SerializeField]
+    private Sprite fixedSprite;
     [SerializeField]
     private FixableMode mode;
     [SerializeField]
     private GameObject desiredPart;
     [SerializeField]
     private PlayerController player;
+    private SpriteRenderer spriteRenderer;
     private DrillManager drillManager;
 
     void Awake()
     {
         drillManager = transform.parent.GetComponent<DrillManager>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     public void Interact()
     {
-        if (mode == FixableMode.NewPart)
+        if (Vector3.Distance(player.transform.position, transform.position) > 2f)
         {
-            if (player.holdObject == desiredPart)
+            if (mode == FixableMode.NewPart)
             {
-                // positive feedback
-                drillManager.SetFixed(gameObject);
+                if (player.holdObject == desiredPart)
+                {
+                    // positive feedback
+                    drillManager.SetFixed(gameObject);
+                    spriteRenderer.sprite = fixedSprite;
+                }
+                else
+                {
+                    // negative feedback
+                }
             }
             else
             {
-                // negative feedback
+                // positive feedback
+                if (player.hasWrench)
+                {
+                    drillManager.SetFixed(gameObject);
+                    spriteRenderer.sprite = fixedSprite;
+                }
             }
         }
-        else
-        {
-            // positive feedback
-            drillManager.SetFixed(gameObject);
-        }
+
     }
 
     void OnDrawGizmos()

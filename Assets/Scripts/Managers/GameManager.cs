@@ -25,7 +25,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private BackgroundSwitchController switchController;
 
-    public static GameManager instance = null;
+    private int layerIndex = 0;
+
+public static GameManager instance = null;
     public delegate void OnGlobalStateChange(GlobalState currentState, GlobalState oldState);
     public static event OnGlobalStateChange OnStateChanged;
 
@@ -53,7 +55,12 @@ public class GameManager : MonoBehaviour
 
     public void nextLayer()
     {
-        Debug.Log("Next Layer!");
+        if (layerIndex >= 4)
+        {
+            GameManager.instance.globalState = GlobalState.GameEndCutscene;
+            return;
+        }
+        layerIndex++;
         globalState = GlobalState.Cutscene;
         openOverlay(OverlayType.DepthMeter);
         switchController.NextLayer();
@@ -62,11 +69,12 @@ public class GameManager : MonoBehaviour
 
     public void openOverlay(OverlayType type)
     {
-        drillManager.gameObject.SetActive(false);
+
         playerController.gameObject.SetActive(false);
 
         if (type == OverlayType.Periscope)
         {
+            drillManager.gameObject.SetActive(false);
             cameraController.ChangeMode(MovementMode.Periscope);
         }
         else

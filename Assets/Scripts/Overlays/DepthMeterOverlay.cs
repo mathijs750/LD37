@@ -24,7 +24,7 @@ public class DepthMeterOverlay : MonoBehaviour
     {
         audioManager.setParameter(new eventParameters(0,"engineMovement"), 1);
         float oldDepth = depth;
-        depth -= 51;
+        depth -= 80;
         float elapsedTime = 0;
         while (elapsedTime < duration)
         {
