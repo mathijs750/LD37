@@ -1,0 +1,15 @@
+{0063769c-c7e1-4296-baa8-347bbc01ba6b} event:/ambiences/ambience_drillcabin
+{0e862df0-d0e4-4ac3-84f2-1ffb862635b0} event:/ambiences/ambience_engine
+{8aec5585-bd65-419f-a793-5a3b72405f84} event:/ambiences/ambience_forest
+{807f9e0d-12de-4bac-9f53-d56dc280e173} event:/fx/drill_move
+{69d7df7f-cb74-4dc8-9874-4d441408506d} event:/fx/switch_01
+{919300e5-3c7d-4410-9b92-2d1cdf6002d9} event:/fx/switch_02
+{964c47a5-554d-4014-b79d-d13b2fc9280e} event:/fx/switch_03
+{8dd9537d-f6de-45c7-9c7b-7f2c113004a8} event:/fx/switch_04
+{19320048-6fa8-42fd-ace9-d3a53c8ff1e1} event:/fx/switch_05
+{2ce4e517-742f-4ecd-b88b-0925d1dba139} event:/music/guitarstings
+{57bef6f0-2154-44f1-b33a-1287144d78b4} event:/music/music
+{655093b6-e06f-4aa7-80ec-a15f5be96162} event:/player/footsteps
+{d24adb97-d678-4b4d-b08b-55e276753e91} bus:/
+{708543af-917e-4a19-a9f4-0ecfa908cbcd} bus:/Reverb
+{c5763739-64dc-4f8e-8329-e98bfde81f9e} bank:/Master Bank

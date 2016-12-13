@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.01.08.00">
+    <object class="EncodableAsset" id="{a3149c09-0c32-4dc1-a8a6-7aecbe8aa25b}">
+        <property name="assetPath">
+            <value>ambiences/metalrandom/</value>
+        </property>
+        <relationship name="masterAssetFolder">
+            <destination>{ff2bf3a9-3637-449a-bc53-74f98e524003}</destination>
+        </relationship>
+    </object>
+</objects>
